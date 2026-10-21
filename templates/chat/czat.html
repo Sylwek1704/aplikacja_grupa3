@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div id="wiadomosci" style="display: flex; justify-content: center; align-items: center;  flex-direction: column;">
+    {% for w in wiadomosci %}
+    <div class="wiadomosc {% if w.autor == user %}moja{% endif %}" data-id="{{ w.id }}">
+        <span class="autor">{{ w.autor.username }}</span>
+        <span class="godzina">{{ w.data|date:"H:i" }}</span>
+        <div class="tresc">{{ w.tresc }}</div>
+    </div>
+    {% empty %}
+    <p id="pusto">Brak wiadomości, napisz coś pierwszy!</p>
+    {% endfor %}
+</div>
+
+<form id="formularz" method="post" style="display: flex; justify-content: center; align-items: center;">
+    {% csrf_token %}
+    <input type="text" name="tresc" id="tresc" placeholder="Napisz wiadomość..." maxlength="1000" autocomplete="off" required>
+    <button type="submit">Wyślij</button>
+</form>
+
+<script>
+    var URL_WIADOMOSCI = "{% url 'wiadomosci' %}";
+</script>
+<script src="{% static 'czat.js' %}"></script>
+{% endblock %}
