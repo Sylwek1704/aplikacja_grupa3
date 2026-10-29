@@ -1,0 +1,318 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #fff;
+    color: #000;
+    margin: 0;
+    line-height: 1.5;
+}
+
+a {
+    color: #000;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 26px;
+    margin: 0 0 20px 0;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 18px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+.top {
+    border-bottom: 1px solid #000;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    color: #000;
+    font-size: 22px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.menu form {
+    margin: 0;
+}
+
+.menu button,
+.przycisk-link {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    font-family: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.content {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+
+.box {
+    max-width: 340px;
+    margin: 60px auto;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 8px 0;
+    margin-top: 3px;
+    border: none;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    color: #000;
+}
+
+textarea,
+select {
+    border: 1px solid #000;
+    padding: 6px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-bottom-width: 2px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #fff;
+    color: #000;
+}
+
+button:disabled {
+    opacity: 0.4;
+}
+
+.blad {
+    font-size: 14px;
+    border-left: 3px solid #000;
+    padding-left: 10px;
+    font-style: italic;
+}
+
+.info {
+    font-size: 14px;
+    border: 1px solid #000;
+    padding: 8px 10px;
+}
+
+#wiadomosci {
+    height: 60vh;
+    overflow-y: auto;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 10px 0;
+}
+
+#pusto {
+    color: #777;
+    text-align: center;
+    font-style: italic;
+}
+
+.wiadomosc {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.wiadomosc:last-child {
+    border-bottom: none;
+}
+
+.wiadomosc.moja {
+    padding-left: 12px;
+    border-left: 2px solid #000;
+}
+
+.autor {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.godzina {
+    font-size: 12px;
+    color: #777;
+    margin-left: 8px;
+}
+
+.tresc {
+    margin-top: 2px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.zdjecie {
+    display: block;
+    max-width: 100%;
+    max-height: 300px;
+    margin-top: 6px;
+    border: 1px solid #000;
+}
+
+#formularz {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    margin-top: 15px;
+}
+
+#formularz input[type="text"] {
+    flex: 1;
+}
+
+#formularz button {
+    width: auto;
+    margin-top: 0;
+    padding: 8px 20px;
+}
+
+.dodaj-zdjecie {
+    margin: 0;
+    padding: 8px 0;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dodaj-zdjecie input {
+    display: none;
+}
+
+#wybrane {
+    font-size: 13px;
+    color: #777;
+}
+
+.szukaj {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.szukaj button {
+    width: auto;
+    margin-top: 0;
+    padding: 8px 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #000;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    font-weight: normal;
+    font-style: italic;
+}
+
+td form {
+    margin: 0;
+}
+
+.maly {
+    width: auto;
+    padding: 3px 10px;
+    margin: 0 0 5px 0;
+    font-size: 13px;
+}
+
+.czerwony {
+    background: #fff;
+    color: #000;
+}
+
+.czerwony:hover {
+    background: #000;
+    color: #fff;
+}
+
+.miniatura {
+    max-width: 80px;
+    max-height: 80px;
+    display: block;
+    margin-bottom: 5px;
+    border: 1px solid #000;
+}
+
+.w-linii {
+    display: flex;
+    gap: 5px;
+}
+
+.w-linii select {
+    margin-top: 0;
+    width: auto;
+}
+
+@media (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,18 @@
+{{define "tytul"}}Reset hasła{{end}}
+
+{{define "tresc"}}
+<div class="box">
+    <h2>Nie pamiętasz hasła?</h2>
+    {{if .Info}}
+    <p class="info">{{.Info}}</p>
+    {{else}}
+    <p>Podaj email, którego użyłeś przy rejestracji. Wyślemy na niego link do ustawienia nowego hasła.</p>
+    <form method="post" action="/zapomnialem">
+        <label>Email</label>
+        <input type="email" name="email" required autofocus>
+        <button type="submit">Wyślij link</button>
+    </form>
+    {{end}}
+    <p><a href="/login">Wróć do logowania</a></p>
+</div>
+{{end}}

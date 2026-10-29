@@ -1,0 +1,18 @@
+{{define "tytul"}}Logowanie{{end}}
+
+{{define "tresc"}}
+<div class="box">
+    <h2>Logowanie</h2>
+    {{if .Blad}}<p class="blad">{{.Blad}}</p>{{end}}
+    {{if .Info}}<p class="info">{{.Info}}</p>{{end}}
+    <form method="post" action="/login">
+        <label>Login</label>
+        <input type="text" name="login" value="{{.Login}}" required autofocus>
+        <label>Hasło</label>
+        <input type="password" name="haslo" required>
+        <button type="submit">Zaloguj</button>
+    </form>
+    <p><a href="/zapomnialem">Nie pamiętasz hasła?</a></p>
+    <p>Nie masz konta? <a href="/rejestracja">Zarejestruj się</a></p>
+</div>
+{{end}}

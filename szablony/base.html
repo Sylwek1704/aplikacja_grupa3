@@ -1,0 +1,26 @@
+{{define "base"}}<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{template "tytul" .}} - Czat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="top">
+        <a href="/" class="logo">Czat</a>
+        {{if .User}}
+        <div class="menu">
+            <span>Zalogowany jako <b>{{.User.Login}}</b></span>
+            {{if .User.JestModeratorem}}<a href="/panel" class="przycisk-link">Panel</a>{{end}}
+            <form action="/wyloguj" method="post">
+                <button type="submit">Wyloguj</button>
+            </form>
+        </div>
+        {{end}}
+    </div>
+    <div class="content">
+        {{template "tresc" .}}
+    </div>
+</body>
+</html>{{end}}

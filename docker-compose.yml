@@ -1,0 +1,41 @@
+services:
+  baza:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: czat
+    ports:
+      - "5433:5432"
+    volumes:
+      - baza:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d czat"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  poczta:
+    image: marlonb/mailcrab:latest
+    ports:
+      - "1081:1080"
+
+  czat:
+    build: .
+    environment:
+      DB_URL: postgres://postgres:postgres@baza:5432/czat?sslmode=disable
+      SMTP_ADRES: poczta:1025
+      ADRES: http://localhost:8081
+    ports:
+      - "8081:8080"
+    volumes:
+      - zdjecia:/zdjecia
+    depends_on:
+      baza:
+        condition: service_healthy
+      poczta:
+        condition: service_started
+
+volumes:
+  baza:
+  zdjecia:

@@ -1,0 +1,17 @@
+{{define "tytul"}}Czat{{end}}
+
+{{define "tresc"}}
+<div id="wiadomosci"><p id="pusto">Ładowanie...</p></div>
+
+<form id="formularz">
+    <input type="text" name="tresc" id="tresc" placeholder="Napisz wiadomość..." maxlength="1000" autocomplete="off">
+    <label class="dodaj-zdjecie" title="Dodaj zdjęcie">
+        Zdjęcie
+        <input type="file" name="zdjecie" id="zdjecie" accept="image/png,image/jpeg,image/gif,image/webp">
+    </label>
+    <button type="submit" id="wyslij">Wyślij</button>
+</form>
+<p id="wybrane"></p>
+
+<script src="/static/czat.js"></script>
+{{end}}

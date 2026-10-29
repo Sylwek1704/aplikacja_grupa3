@@ -1,0 +1,95 @@
+{{define "tytul"}}Panel{{end}}
+
+{{define "tresc"}}
+<h2>Panel {{if .User.JestAdminem}}administratora{{else}}moderatora{{end}}</h2>
+{{if .Info}}<p class="info">{{.Info}}</p>{{end}}
+
+<h3>Wiadomości</h3>
+<form method="get" action="/panel" class="szukaj">
+    <input type="text" name="szukaj" value="{{.Szukaj}}" placeholder="Szukaj po treści albo autorze">
+    <button type="submit">Szukaj</button>
+    {{if .Szukaj}}<a href="/panel">wyczyść</a>{{end}}
+</form>
+
+<table>
+    <tr>
+        <th>Autor</th>
+        <th>Data</th>
+        <th>Treść</th>
+        <th>Zdjęcie</th>
+        <th>Akcje</th>
+    </tr>
+    {{range .Wiadomosci}}
+    <tr>
+        <td>{{.Autor}}</td>
+        <td>{{.Data}}{{if .Edytowana}}<br><small>edytowana</small>{{end}}</td>
+        <td>
+            <form method="post" action="/panel/wiadomosci/{{.ID}}/edytuj" id="edycja{{.ID}}">
+                <textarea name="tresc" rows="2" maxlength="1000">{{.Tresc}}</textarea>
+            </form>
+        </td>
+        <td>
+            {{if .Zdjecie}}
+            <a href="/zdjecia/{{.Zdjecie}}" target="_blank"><img src="/zdjecia/{{.Zdjecie}}" class="miniatura" alt="zdjęcie"></a>
+            <form method="post" action="/panel/wiadomosci/{{.ID}}/usun-zdjecie" onsubmit="return confirm('Usunąć zdjęcie?')">
+                <button type="submit" class="maly czerwony">Usuń zdjęcie</button>
+            </form>
+            {{else}}-{{end}}
+        </td>
+        <td>
+            <button type="submit" form="edycja{{.ID}}" class="maly">Zapisz</button>
+            <form method="post" action="/panel/wiadomosci/{{.ID}}/usun" onsubmit="return confirm('Na pewno usunąć wiadomość?')">
+                <button type="submit" class="maly czerwony">Usuń</button>
+            </form>
+        </td>
+    </tr>
+    {{else}}
+    <tr><td colspan="5">Brak wiadomości</td></tr>
+    {{end}}
+</table>
+
+{{if .User.JestAdminem}}
+<h3>Użytkownicy</h3>
+<table>
+    <tr>
+        <th>Login</th>
+        <th>Email</th>
+        <th>Rola</th>
+        <th>Status</th>
+        <th>Akcje</th>
+    </tr>
+    {{range .Uzytkownicy}}
+    <tr>
+        <td>{{.Login}}</td>
+        <td>{{.Email}}</td>
+        <td>
+            {{if eq .ID $.User.ID}}
+            {{.Rola}} (ty)
+            {{else}}
+            <form method="post" action="/panel/uzytkownicy/{{.ID}}/rola" class="w-linii">
+                <select name="rola">
+                    <option value="user" {{if eq .Rola "user"}}selected{{end}}>użytkownik</option>
+                    <option value="moderator" {{if eq .Rola "moderator"}}selected{{end}}>moderator</option>
+                    <option value="admin" {{if eq .Rola "admin"}}selected{{end}}>admin</option>
+                </select>
+                <button type="submit" class="maly">Zmień</button>
+            </form>
+            {{end}}
+        </td>
+        <td>{{if .Zablokowany}}<span class="blad">zablokowany</span>{{else}}aktywny{{end}}</td>
+        <td>
+            {{if ne .ID $.User.ID}}
+            <form method="post" action="/panel/uzytkownicy/{{.ID}}/blokada">
+                {{if .Zablokowany}}
+                <button type="submit" class="maly">Odblokuj</button>
+                {{else}}
+                <button type="submit" class="maly czerwony">Zablokuj</button>
+                {{end}}
+            </form>
+            {{end}}
+        </td>
+    </tr>
+    {{end}}
+</table>
+{{end}}
+{{end}}

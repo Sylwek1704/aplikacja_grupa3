@@ -1,0 +1,20 @@
+{{define "tytul"}}Rejestracja{{end}}
+
+{{define "tresc"}}
+<div class="box">
+    <h2>Rejestracja</h2>
+    {{if .Blad}}<p class="blad">{{.Blad}}</p>{{end}}
+    <form method="post" action="/rejestracja">
+        <label>Login</label>
+        <input type="text" name="login" value="{{.Login}}" maxlength="30" required autofocus>
+        <label>Email</label>
+        <input type="email" name="email" value="{{.Email}}" required>
+        <label>Hasło</label>
+        <input type="password" name="haslo" minlength="8" required>
+        <label>Powtórz hasło</label>
+        <input type="password" name="haslo2" minlength="8" required>
+        <button type="submit">Załóż konto</button>
+    </form>
+    <p>Masz już konto? <a href="/login">Zaloguj się</a></p>
+</div>
+{{end}}

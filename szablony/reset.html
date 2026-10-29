@@ -1,0 +1,21 @@
+{{define "tytul"}}Nowe hasło{{end}}
+
+{{define "tresc"}}
+<div class="box">
+    <h2>Ustaw nowe hasło</h2>
+    {{if .ZlyLink}}
+    <p class="blad">Link jest nieprawidłowy albo wygasł.</p>
+    <p><a href="/zapomnialem">Wyślij nowy link</a></p>
+    {{else}}
+    {{if .Blad}}<p class="blad">{{.Blad}}</p>{{end}}
+    <form method="post" action="/reset">
+        <input type="hidden" name="token" value="{{.Token}}">
+        <label>Nowe hasło</label>
+        <input type="password" name="haslo" minlength="8" required autofocus>
+        <label>Powtórz hasło</label>
+        <input type="password" name="haslo2" minlength="8" required>
+        <button type="submit">Zmień hasło</button>
+    </form>
+    {{end}}
+</div>
+{{end}}
